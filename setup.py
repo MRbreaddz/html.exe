@@ -93,7 +93,7 @@ with open("main.py", 'w',encoding='utf-8') as file:
     file.writelines(modified_lines)
 
 if __name__ == '__main__':
-    opts = ['main.py','-w','--icon=icon.png']
+    opts = ['main.py','-w','--icon=icon.ico']
     run(opts)
 
 icon = 'icon.png'
