@@ -96,7 +96,7 @@ if __name__ == '__main__':
     opts = ['main.py','-w','--icon=icon.ico']
     run(opts)
 
-icon = 'icon.png'
+icon = 'icon.ico'
 folder = 'dist/main/_internal'
 
 shutil.copy(icon, folder)
