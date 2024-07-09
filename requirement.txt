@@ -1,4 +1,3 @@
 PySide2
 pyinstaller
 bs4
-pillow
