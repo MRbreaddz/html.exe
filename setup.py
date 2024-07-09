@@ -101,9 +101,14 @@ folder = 'dist/main/_internal'
 
 shutil.copy(icon, folder)
 
-png_files = glob.glob("*.png")
-for i in png_files:
-    shutil.copy(i, folder)
+files_type_list = ["*.png","*.jpeg","*.mp3","*.mp4","*.ico","*.webp","*.svg"]
+
+for i in files_type_list:
+    files = []
+    files = glob.glob(i)
+    for a in files:
+        shutil.copy(a, folder)
+    files = []
 
 shutil.rmtree("build")
 os.remove("main.spec")
