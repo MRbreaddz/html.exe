@@ -22,7 +22,7 @@ app = QApplication(sys.argv)
 web = QWebEngineView()
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-icon = os.path.join(script_dir, 'icon.png')
+icon = os.path.join(script_dir, 'icon.ico')
 
 
 with open(html_temp_file_name, 'r',encoding='utf-8') as html_file:
