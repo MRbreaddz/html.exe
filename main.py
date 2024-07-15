@@ -6,6 +6,10 @@ from PySide2.QtCore import QUrl
 from PySide2.QtGui import QIcon
 from bs4 import BeautifulSoup
 import tempfile
+import glob
+import shutil
+import atexit
+import getpass
 
 html_file_contents = ''
 javascript_file_contents = ''
@@ -16,6 +20,16 @@ html_file_contents = html_file_contents.encode()
 with tempfile.NamedTemporaryFile(suffix='.html', delete=False) as temp_file:
     temp_file.write(html_file_contents)
     html_temp_file_name = temp_file.name
+
+files_type_list = ["*.png","*.jpeg","*.mp3","*.mp4","*.ico","*.webp","*.svg"]
+
+for i in files_type_list:
+    files = []
+    files = glob.glob("_internal/*"+str(i))
+    for a in files:
+        shutil.copy(a, r"C:\Users\%s\AppData\Local\Temp" % getpass.getuser())
+    files = []
+
 
 
 app = QApplication(sys.argv)
@@ -44,5 +58,17 @@ web.load(QUrl.fromLocalFile(html_temp_file_name))
 web.setWindowTitle(str(title))
 web.setWindowIcon(QIcon(icon))
 web.show()
+
+def exit_handler():
+    for i in files_type_list:
+        files = []
+        files = glob.glob("_internal/*"+str(i))
+        for a in files:
+            os.remove(r"C:\Users\%s\AppData\Local\Temp/" % getpass.getuser()+str(os.path.basename(a)))
+        files = []
+
+    os.remove(html_temp_file_name)
+
+atexit.register(exit_handler)
 
 sys.exit(app.exec_())
